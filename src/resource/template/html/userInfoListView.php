@@ -22,7 +22,7 @@
             <?php require_once('headerView.php'); ?>
         </div>
         <div class="container-fluid user_info_list_area">
-            <h2>ユーザ一覧</h2>
+            <h4>ユーザ一覧</h4>
             <!-- 検索フォーム -->
             <div id="search_user_info">
                 <div class="accordion_title">
