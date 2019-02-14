@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET')
 class SelectUserInfoListController
 {
     /**
-     * ユーザ一覧を取得するコントローラクラス
+     * ユーザ一覧取得を判定する関数
      * @return void
      */
     public function executeSelectUserInfoList(): void

@@ -52,7 +52,7 @@ class LoginService
     }
 
     /**
-     * ログイン認証を実施する関数
+     * ログイン認証を判定する関数
      * @throws
      * @return bool $result_login ログイン認証結果
      */

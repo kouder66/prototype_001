@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET')
 class LogoutController
 {
     /**
-     * ログアウトを行う関数
+     * ログインアウトを判定する関数
      * @return void
      */
     public function transitionLogout(): void
