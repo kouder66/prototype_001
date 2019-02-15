@@ -19,10 +19,10 @@ require_once('../model/SelectUserInfoListModel.php');
 class SelectUserInfoListService
 {
     /**
-     * ユーザ一覧取得を判定する関数
+     * ユーザ情報一覧取得を判定する関数
      * @return bool $result_user_info_list ユーザ情報一覧取得結果
      */
-    public function getUserInfoList()
+    public static function getUserInfoList()
     {
         $result_user_info_list = false;
 

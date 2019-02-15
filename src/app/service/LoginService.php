@@ -71,6 +71,9 @@ class LoginService
             return $result_login;
         }
 
+        // パスワードhash化
+        $UserInfoEntity->setPassword(hash('sha256', $UserInfoEntity->getPassword()));
+
         $LoginModel = new LoginModel($UserInfoEntity->getUserId(), $UserInfoEntity->getPassword());
 
         // ユーザID存在チェック

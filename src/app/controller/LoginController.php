@@ -44,7 +44,7 @@ class LoginController
     }
 
     /**
-     * ログイン認証を判定する関数
+     * ログイン認証を実行する関数
      * @return void
      */
     public function executeLogin(): void

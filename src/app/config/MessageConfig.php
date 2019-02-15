@@ -36,8 +36,15 @@ define('CHECK_ERROR_MESSAGE13', '確認用パスワードが未入力です。')
 define('CHECK_ERROR_MESSAGE14', '確認用パスワードが正しい形式で入力されていません。');
 // パスワードと確認用パスワードの一致チェックエラーメッセージ
 define('CHECK_ERROR_MESSAGE15', 'パスワードと確認用パスワードが一致していません。');
+// ユーザIDチェックエラーメッセージ
+define('CHECK_ERROR_MESSAGE16', 'ユーザIDが既に存在しています。');
 
 // ユーザIDチェックエラーメッセージ
 define('LOGIN_ERROR_MESSAGE1', 'ユーザIDが存在していません。');
 // パスワード一致チェックエラーメッセージ
 define('LOGIN_ERROR_MESSAGE2', 'パスワードが間違っています。');
+
+// 登録完了メッセージ
+define('COMPLETION_MESSAGE1', '登録完了しました。');
+// 登録失敗メッセージ
+define('COMPLETION_MESSAGE2', '登録する際に問題が発生しました。');

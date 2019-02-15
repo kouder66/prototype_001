@@ -22,6 +22,11 @@
                     <h4>ユーザ登録</h4>
                 </div>
                 <div class="form-group create_form">
+                    <?php if(isset($_SESSION['check_error_message16'])): ?>
+                        <div class="text-center">
+                            <p class="error_message"><?php echo $_SESSION['check_error_message16'] ?></p>
+                        </div>
+                    <?php endif; ?>
                     <div>
                         <label>ユーザID</label>
                     </div>
@@ -145,3 +150,4 @@
 <?php unset($_SESSION["check_error_message13"]); ?>
 <?php unset($_SESSION["check_error_message14"]); ?>
 <?php unset($_SESSION["check_error_message15"]); ?>
+<?php unset($_SESSION["check_error_message16"]); ?>

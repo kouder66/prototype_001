@@ -21,7 +21,7 @@ session_destroy();
 if($_SERVER['REQUEST_METHOD'] === 'GET')
 {
     $LogoutController = new LogoutController();
-    $LogoutController->transitionLogout();
+    $LogoutController->executeLogout();
 }
 
 /**
@@ -31,10 +31,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET')
 class LogoutController
 {
     /**
-     * ログインアウトを判定する関数
+     * ログインアウトを実行する関数
      * @return void
      */
-    public function transitionLogout(): void
+    public function executeLogout(): void
     {
         // トップ画面へ遷移
         header('Location: '.BASE_VIEW_PATH.'index.php');

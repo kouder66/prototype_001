@@ -12,12 +12,12 @@ use App\Service\SelectUserInfoListService;
 require_once('../service/SelectUserInfoListService.php');
 require_once('../config/PathConfig.php');
 
+unset($_SESSION['user_info_list']);
 
 /** コントローラ呼び出し */
 if($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    $SelectUserInfoListController = new SelectUserInfoListController();
-    $SelectUserInfoListController->executeSelectUserInfoList();
+    SelectUserInfoListController::executeSelectUserInfoList();
 }
 
 /**
@@ -27,14 +27,12 @@ if($_SERVER['REQUEST_METHOD'] === 'GET')
 class SelectUserInfoListController
 {
     /**
-     * ユーザ一覧取得を判定する関数
+     * ユーザ一覧取得を実行する関数
      * @return void
      */
-    public function executeSelectUserInfoList(): void
+    public static function executeSelectUserInfoList(): void
     {
-        $SelectUserInfoListService = new SelectUserInfoListService();
-
-        if ($SelectUserInfoListService->getUserInfoList())
+        if (SelectUserInfoListService::getUserInfoList())
         {
             // トップ画面へ遷移
             header('Location: '.BASE_VIEW_PATH.'userInfoListView.php');
