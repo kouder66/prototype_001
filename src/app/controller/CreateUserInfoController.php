@@ -12,6 +12,8 @@ use App\Service\CreateUserInfoService;
 require_once('../config/PathConfig.php');
 require_once('../service/CreateUserInfoService.php');
 
+/** エンティティのセッション削除 */
+unset($_SESSION['user_info_entity']);
 
 /** コントローラ呼び出し */
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
@@ -20,8 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 }
 else
 {
-    $CreateUserInfoController = new CreateUserInfoController();
-    $CreateUserInfoController->executeCreateUserInfo($_POST);
+    CreateUserInfoController::executeCreateUserInfo($_POST);
 }
 
 /**
@@ -43,10 +44,10 @@ class CreateUserInfoController
 
     /**
      * ユーザ情報登録を実行する関数
-     * @param array $input_user_info
+     * @param array $input_user_info 入力されたユーザ情報
      * @return void
      */
-    public function executeCreateUserInfo(array $input_user_info): void
+    public static function executeCreateUserInfo(array $input_user_info): void
     {
         $CreateUserInfoService = new CreateUserInfoService($input_user_info);
 

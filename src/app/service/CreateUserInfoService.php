@@ -56,7 +56,7 @@ class CreateUserInfoService
 
     /**
      * CreateUserInfoService constructor.
-     * @param array $input_user_info
+     * @param array $input_user_info 入力されたユーザ情報
      */
     public function __construct(array $input_user_info)
     {

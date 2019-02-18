@@ -50,14 +50,14 @@ class CreateUserInfoModel implements CreateUserInfoInterface
         $db = $this->dbConnectInfo();
 
         try {
+            // トランザクション開始
+            $db->beginTransaction();
+
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
             $sql = 'INSERT INTO user_info (id, user_id, password, first_name, last_name, first_name_kana, last_name_kana, regist_date, update_date ) values (:id, :user_id, :password, :first_name, :last_name, :first_name_kana, :last_name_kana, :regist_date, :update_date )';
 
             $stm = $db->prepare($sql);
-
-            // トランザクション開始
-            $db->beginTransaction();
 
             // valuesの設定
             $stm->bindValue(

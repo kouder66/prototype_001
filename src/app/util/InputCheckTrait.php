@@ -156,8 +156,7 @@ trait InputCheckTrait
             }
         }
 
-        // チェックカウントが0ではない場合、何かしらのバリエーション
-        // で引っかかっている為、falseを返す
+        // チェックカウントが0ではない場合、何かしらのバリエーションで引っかかっている為、falseを返す
         if ($check_count === 0)
         {
             $result_validation = true;

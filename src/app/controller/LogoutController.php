@@ -18,7 +18,7 @@ $_SESSION = array();
 session_destroy();
 
 /** コントローラ呼び出し */
-if($_SERVER['REQUEST_METHOD'] === 'GET')
+if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
     $LogoutController = new LogoutController();
     $LogoutController->executeLogout();
