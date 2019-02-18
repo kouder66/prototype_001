@@ -1,10 +1,15 @@
+<?php require_once('../../../app/entity/userInfoEntity.php'); ?>
 <?php session_start(); ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>ユーザ登録</title>
+        <?php if(isset($_SESSION['user_info_entity'])): ?>
+            <title>ユーザ情報更新</title>
+        <?php else: ?>
+            <title>ユーザ情報登録</title>
+        <?php endif; ?>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/createUserInfo.css">
@@ -17,9 +22,17 @@
             <?php require_once('headerView.php'); ?>
         </div>
         <div id="create_userInfo">
-            <form action="../../../app/controller/CreateUserInfoController.php" method="POST">
+            <?php if(isset($_SESSION['user_info_entity'])): ?>
+                <form action="../../../app/controller/UpdateUserInfoController.php" method="POST">
+            <?php else: ?>
+                <form action="../../../app/controller/CreateUserInfoController.php" method="POST">
+            <?php endif; ?>
                 <div class="title">
-                    <h4>ユーザ登録</h4>
+                    <?php if(isset($_SESSION['user_info_entity'])): ?>
+                        <h4>ユーザ情報更新</h4>
+                    <?php else: ?>
+                        <h4>ユーザ情報登録</h4>
+                    <?php endif; ?>
                 </div>
                 <div class="form-group create_form">
                     <?php if(isset($_SESSION['check_error_message16'])): ?>
@@ -31,7 +44,11 @@
                         <label>ユーザID</label>
                     </div>
                     <div>
-                        <input type="text" class="form-control" name="user_id" maxlength="8" />
+                        <?php if(isset($_SESSION['user_info_entity'])): ?>
+                            <input type="text" class="form-control" name="user_id" value=<?php echo $_SESSION['user_info_entity']->getUserId(); ?> disabled/>
+                        <?php else: ?>
+                            <input type="text" class="form-control" name="user_id" maxlength="8" />
+                        <?php endif; ?>
                     </div>
                     <!-- ユーザIDエラーメッセージ -->
                     <?php if(isset($_SESSION["check_error_message1"])): ?>
@@ -45,7 +62,11 @@
                         <label>ユーザ名(姓)</label>
                     </div>
                     <div>
-                        <input type="text" class="form-control" name="first_name" maxlength="16" />
+                        <?php if(isset($_SESSION['user_info_entity'])): ?>
+                            <input type="text" class="form-control" name="first_name" value=<?php echo $_SESSION['user_info_entity']->getFirstName() ?> maxlength="16" />
+                        <?php else: ?>
+                            <input type="text" class="form-control" name="first_name" maxlength="16" />
+                        <?php endif; ?>
                     </div>
                     <!-- ユーザ名(姓)エラーメッセージ -->
                     <?php if(isset($_SESSION["check_error_message3"])): ?>
@@ -59,7 +80,11 @@
                         <label>ユーザ名(名)</label>
                     </div>
                     <div>
-                        <input type="text" class="form-control" name="last_name" maxlength="16" />
+                        <?php if(isset($_SESSION['user_info_entity'])): ?>
+                            <input type="text" class="form-control" name="last_name" value=<?php echo $_SESSION['user_info_entity']->getLastName()?> maxlength="16" />
+                        <?php else: ?>
+                            <input type="text" class="form-control" name="last_name" maxlength="16" />
+                        <?php endif; ?>
                     </div>
                     <!-- ユーザ名(名)エラーメッセージ -->
                     <?php if(isset($_SESSION["check_error_message5"])): ?>
@@ -73,7 +98,11 @@
                         <label>フリガナ(姓)</label>
                     </div>
                     <div>
-                        <input type="text" class="form-control" name="first_name_kana" maxlength="16" />
+                        <?php if(isset($_SESSION['user_info_entity'])): ?>
+                            <input type="text" class="form-control" name="first_name_kana" value=<?php echo $_SESSION['user_info_entity']->getFirstNameKana() ?> maxlength="16" />
+                        <?php else: ?>
+                            <input type="text" class="form-control" name="first_name_kana" maxlength="16" />
+                        <?php endif; ?>
                     </div>
                     <!-- フリガナ(姓)エラーメッセージ -->
                     <?php if(isset($_SESSION["check_error_message7"])): ?>
@@ -87,7 +116,11 @@
                         <label>フリガナ(名)</label>
                     </div>
                     <div>
-                        <input type="text" class="form-control" name="last_name_kana" maxlength="16" />
+                        <?php if(isset($_SESSION['user_info_entity'])): ?>
+                            <input type="text" class="form-control" name="last_name_kana" value=<?php echo $_SESSION['user_info_entity']->getLastNameKana() ?> maxlength="16" />
+                        <?php else: ?>
+                            <input type="text" class="form-control" name="last_name_kana" maxlength="16" />
+                        <?php endif; ?>
                     </div>
                     <!-- フリガナ(名)エラーメッセージ -->
                     <?php if(isset($_SESSION["check_error_message9"])): ?>
@@ -127,8 +160,12 @@
                     <?php endif; ?>
                 </div>
                 <div class="form-group buttun create_form">
-                    <input type="hidden" name="mode" value="execute" />
-                    <input type="submit" class="btn btn-primary form-control" value="登録" />
+                    <?php if(isset($_SESSION['user_info_entity'])): ?>
+                        <input type="hidden" name="id" value=<?php echo $_SESSION['user_info_entity']->getId() ?> />
+                        <input type="submit" class="btn btn-primary form-control" value="更新" />
+                    <?php else: ?>
+                        <input type="submit" class="btn btn-primary form-control" value="登録" />
+                    <?php endif; ?>
                 </div>
             </form>
         </div>

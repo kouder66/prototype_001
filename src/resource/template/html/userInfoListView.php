@@ -2,7 +2,7 @@
 <?php if(!isset($_SESSION)){ session_start(); } ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0">
         <title>ユーザ一覧</title>
@@ -114,16 +114,14 @@
                                     <td data-label="ユーザ登録日"><?php echo $value->getRegistDate(); ?></td>
                                     <td data-label="ユーザ更新日"><?php echo $value->getUpdateDate(); ?></td>
                                     <td>
-                                        <form action="#" method="POST">
+                                        <form action="../../../app/controller/UpdateUserInfoController.php?id=<?php echo $value->getId(); ?>" method="GET">
                                             <input type="hidden" name="id" value=<?php echo $value->getId(); ?> />
-                                            <input type="hidden" name="mode" value="transition" />
                                             <input type="submit" class="btn btn-primary sp_button" name="update" value="編集" />
                                         </form>
                                     </td>
                                     <td>
                                         <form action="#" method="POST">
                                             <input type="hidden" name="id" value=<?php echo $value->getId(); ?> />
-                                            <input type="hidden" name="mode" value="transition" />
                                             <input type="submit" class="btn btn-primary sp_button" name="deleate" value="削除" />
                                         </form>
                                     </td>
@@ -147,3 +145,4 @@
 <?php unset($_SESSION["check_error_message8"]); ?>
 <?php unset($_SESSION["check_error_message9"]); ?>
 <?php unset($_SESSION["result_message"]); ?>
+

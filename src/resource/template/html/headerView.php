@@ -15,7 +15,7 @@
             </ul>
             <div class="navbar-nav">
                 <?php if(isset($_SESSION["user_name"])): ?>
-                    <a class="nav-link text-light mr-sm-2" href="#"><?php echo "ようこそ！！ ".$_SESSION["user_name"]."！！" ?></a>
+                    <a class="nav-link text-light mr-sm-2" href="../../../app/controller/UpdateUserInfoController.php?id=<?php echo $_SESSION['id'] ?>"><?php echo "ようこそ！！ ".$_SESSION["user_name"]."！！" ?></a>
                 <?php endif; ?>
             </div>
         </div>
