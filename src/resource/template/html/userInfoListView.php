@@ -120,7 +120,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="#" method="POST">
+                                        <form action="../../../app/controller/DeleteUserInfoController.php?id=<?php echo $value->getId(); ?>" method="GET">
                                             <input type="hidden" name="id" value=<?php echo $value->getId(); ?> />
                                             <input type="submit" class="btn btn-primary sp_button" name="deleate" value="削除" />
                                         </form>
