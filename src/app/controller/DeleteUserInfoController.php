@@ -8,8 +8,10 @@
 namespace App\Controller;
 
 use App\Service\UpdateUserInfoService;
+use App\Service\DeleteUserInfoService;
 
 require_once('../service/UpdateUserInfoService.php');
+require_once('../service/DeleteUserInfoService.php');
 require_once('../config/PathConfig.php');
 
 
@@ -21,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 }
 else
 {
-    DeleteUserInfoController::executeDeleteUserInfo($_POST['id']);
+    DeleteUserInfoController::executeDeleteUserInfo($_POST['id'], $_POST['user_id']);
 }
 
 /**
@@ -52,10 +54,18 @@ class DeleteUserInfoController
     /**
      * ユーザ情報削除を実行する関数
      * @param string $id id
+     * @param string $user_id ユーザID
      * @return void
      */
-    public static function executeDeleteUserInfo(string $id): void
+    public static function executeDeleteUserInfo(string $id, $user_id): void
     {
+        $DeleteUserInfoService = new DeleteUserInfoService($id, $user_id);
 
+        if ($DeleteUserInfoService->checkDeleteUserInfo())
+        {
+            // 登録完了画面を表示
+            header('Location: '.BASE_VIEW_PATH.'completionView.php');
+            exit();
+        }
     }
 }

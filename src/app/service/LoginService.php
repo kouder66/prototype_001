@@ -93,7 +93,7 @@ class LoginService
             // idをセッションに設定
             $_SESSION['id'] = $user_info['id'];
             // ユーザ名を設定
-            $_SESSION['user_name'] = $user_info['first_name'] .$user_info['last_name'];
+            $_SESSION['user_name'] = $user_info['first_name'].$user_info['last_name'];
 
             $result_login = true;
         }

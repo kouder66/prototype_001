@@ -5,11 +5,12 @@
 /******************************
 * ID
 ******************************/
-#delete_userInfo {
+#completion_userInfo {
     background-color: #e6e6e6;
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 10px 10px 10px 10px;
+    z-index: 99;
 }
 
 /******************************
@@ -19,28 +20,23 @@
     padding: 10px 20px 10px 20px;
 }
 
-.delete_message {
+.completion_message {
     text-align: center;
 }
 
-.delete_form {
-    border-bottom: solid 1px white;
-    margin-top: 10px;
-    margin-bottom: 8px;
+.completion_form {
+    border-bottom: solid 2px white;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
-.delete_form .delete_value {
+.completion_form .completion_value {
     display: inline-block;
 }
 
-.delete_title {
+.completion_title {
     display: inline-block;
-    padding-left: 25px;
-}
-
-.delete_value {
-    padding-left: 20%;
-    padding-right: 0.5%;
 }
 
 .button_area {
@@ -55,17 +51,10 @@
     /******************************
     * ID
     ******************************/
-    #delete_userInfo {
+    #completion_userInfo {
         width: 92%;
         height: 50%;
         margin: 5% 4% 5% 4%;
-    }
-
-    /******************************
-    * CLASS
-    ******************************/
-    .delete_title {
-        width: 35%;
     }
 }
 
@@ -76,17 +65,10 @@
     /******************************
     * ID
     ******************************/
-    #delete_userInfo {
+    #completion_userInfo {
         width: 90%;
         height: 50%;
         margin: 3% 5% 3% 5%;
-    }
-
-    /******************************
-    * CLASS
-    ******************************/
-    .delete_title {
-        width: 22%;
     }
 }
 
@@ -97,16 +79,9 @@
     /******************************
     * ID
     ******************************/
-    #delete_userInfo {
+    #completion_userInfo {
         width: 48%;
         height: 50%;
-        margin: 3% 28% 3% 28%;
-    }
-
-    /******************************
-    * CLASS
-    ******************************/
-    .delete_title {
-        width: 22%;
+        margin: 7% 26% 7% 26%;
     }
 }

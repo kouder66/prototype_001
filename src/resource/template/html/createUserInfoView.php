@@ -162,6 +162,7 @@
                 <div class="form-group buttun create_form">
                     <?php if(isset($_SESSION['user_info_entity'])): ?>
                         <input type="hidden" name="id" value=<?php echo $_SESSION['user_info_entity']->getId() ?> />
+                        <input type="hidden" name="user_id" value=<?php echo $_SESSION['user_info_entity']->getUserId() ?> />
                         <input type="submit" class="btn btn-primary form-control" value="更新" />
                     <?php else: ?>
                         <input type="submit" class="btn btn-primary form-control" value="登録" />

@@ -45,6 +45,17 @@ define('LOGIN_ERROR_MESSAGE1', 'ユーザIDが存在していません。');
 define('LOGIN_ERROR_MESSAGE2', 'パスワードが間違っています。');
 
 // 登録完了メッセージ
-define('COMPLETION_MESSAGE1', '登録完了しました。');
+define('COMPLETION_MESSAGE1', 'ユーザ登録完了しました。');
+// 削除完了メッセージ
+define('COMPLETION_MESSAGE2', 'ユーザ更新完了しました。');
+// 削除完了メッセージ
+define('COMPLETION_MESSAGE3', 'ユーザ削除完了しました。');
 // 登録失敗メッセージ
-define('COMPLETION_MESSAGE2', '登録する際に問題が発生しました。');
+define('COMPLETION_MESSAGE4', 'ユーザ登録する際に問題が発生しました。');
+
+// 登録タイトル
+define('TITLE1', '登録');
+// 更新タイトル
+define('TITLE2', '更新');
+// 削除タイトル
+define('TITLE3', '削除');

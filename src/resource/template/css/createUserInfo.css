@@ -17,9 +17,7 @@
  * CLASS
  ******************************/
 .title {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-left: 3%;
+    padding: 10px 20px 10px 20px;
 }
 
 .create_form {

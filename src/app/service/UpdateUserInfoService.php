@@ -90,8 +90,11 @@ class UpdateUserInfoService
     {
         $result_update_user_info = false;
 
-        // 完了メッセージ
-        $completion_message = '';
+        // idチェック
+        if (!isset($this->input_user_info['id']))
+        {
+            return $result_update_user_info;
+        }
 
         // HTMLエスケープ
         $this->checkXSS($this->input_user_info);
@@ -105,6 +108,7 @@ class UpdateUserInfoService
         $UserInfoEntity->setLastName($this->input_user_info['last_name']);
         $UserInfoEntity->setFirstNameKana($this->input_user_info['first_name_kana']);
         $UserInfoEntity->setLastNameKana($this->input_user_info['last_name_kana']);
+        $UserInfoEntity->setUserId($this->input_user_info['user_id']);
 
         // validation
         if ($this->InputCheck('update', $UserInfoEntity))
@@ -118,17 +122,24 @@ class UpdateUserInfoService
             return $result_update_user_info;
         }
 
-        // ユーザ情報を更新
+        // ユーザ情報更新判定
         $UpdateUserInfoModel = new UpdateUserInfoModel();
 
         if ($UpdateUserInfoModel->updateUserInfo($UserInfoEntity))
         {
-            $completion_message = COMPLETION_MESSAGE1;
+            // セッションに登録
+            $_SESSION['title'] = TITLE2;
+            $_SESSION['completion_message'] = COMPLETION_MESSAGE2;
+            $_SESSION['completion_id'] = $UserInfoEntity->getUserId();
+
+            // ログインユーザの場合、セッションを更新する
+            if ($_SESSION['user_name'] === $UserInfoEntity->getFirstName().$UserInfoEntity->getLastName())
+            {
+                $_SESSION['user_name'] = $UserInfoEntity->getFirstName().$UserInfoEntity->getLastName();
+            }
+
             $result_update_user_info = true;
         }
-
-        // 完了メッセージをセッションに登録
-        $_SESSION['completion_message'] = $completion_message;
 
         return $result_update_user_info;
     }

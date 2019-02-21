@@ -71,9 +71,6 @@ class CreateUserInfoService
     {
         $result_create_user_info = false;
 
-        // 完了メッセージ
-        $completion_message = '';
-
         // HTMLエスケープ
         $this->checkXSS($this->input_user_info);
 
@@ -114,17 +111,18 @@ class CreateUserInfoService
             return $result_create_user_info;
         }
 
-        // ユーザ情報登録
+        // ユーザ情報登録判定
         $CreateUserInfoModel = new CreateUserInfoModel($UserInfoEntity);
 
         if ($CreateUserInfoModel->insertUserInfo())
         {
-            $completion_message = COMPLETION_MESSAGE1;
+            // セッションに登録
+            $_SESSION['title'] = TITLE1;
+            $_SESSION['completion_message'] = COMPLETION_MESSAGE1;
+            $_SESSION['completion_id'] = $UserInfoEntity->getUserId();
+
             $result_create_user_info = true;
         }
-
-        // 完了メッセージをセッションに登録
-        $_SESSION['completion_message'] = $completion_message;
 
         return $result_create_user_info;
     }
