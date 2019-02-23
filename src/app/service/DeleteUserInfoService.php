@@ -8,10 +8,14 @@
 namespace App\Service;
 
 use App\Model\DeleteUserInfoModel;
+use Exception;
+use App\Util\PrototypeException;
 
 require_once('../entity/UserInfoEntity.php');
 require_once('../model/DeleteUserInfoModel.php');
 require_once('../config/MessageConfig.php');
+require_once('../util/PrototypeException.php');
+require_once('../util/PrototypeException.php');
 
 
 /**
@@ -39,35 +43,43 @@ class DeleteUserInfoService
     /**
      * ユーザ情報削除を判定する関数
      * @return bool $result_delete_user_info ユーザ情報削除結果
+     * @throws PrototypeException
      */
     public function checkDeleteUserInfo(): bool
     {
         $result_delete_user_info = false;
 
-        // セッションスタート
-        if (!isset($_SESSION))
+        try
         {
-            session_start();
+            // セッションスタート
+            if (!isset($_SESSION))
+            {
+                session_start();
+            }
+
+            // id&ユーザIDチェック
+            if (!(isset($this->id) || isset($this->user_id)))
+            {
+                throw new PrototypeException('', 999999);
+            }
+
+            $DeleteUserInfoModel = new DeleteUserInfoModel();
+
+            // ユーザ情報削除判定
+            if ($DeleteUserInfoModel->deleteUserInfo($this->id))
+            {
+                // セッションに登録
+                $_SESSION['title'] = TITLE3;
+                $_SESSION['completion_message'] = COMPLETION_MESSAGE3;
+                $_SESSION['completion_id'] = $this->id;
+                $_SESSION['completion_user_id'] = $this->user_id;
+
+                $result_delete_user_info = true;
+            }
         }
-
-        // id&ユーザIDチェック
-        if (!(isset($this->id) || isset($this->user_id)))
+        catch (Exception $e)
         {
-            return $result_delete_user_info;
-        }
-
-        $DeleteUserInfoModel = new DeleteUserInfoModel();
-
-        // ユーザ情報削除判定
-        if ($DeleteUserInfoModel->deleteUserInfo($this->id))
-        {
-            // セッションに登録
-            $_SESSION['title'] = TITLE3;
-            $_SESSION['completion_message'] = COMPLETION_MESSAGE3;
-            $_SESSION['completion_id'] = $this->id;
-            $_SESSION['completion_user_id'] = $this->user_id;
-
-            $result_delete_user_info = true;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $result_delete_user_info;

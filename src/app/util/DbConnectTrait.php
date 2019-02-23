@@ -7,6 +7,10 @@
  */
 require_once('../config/DbConfig.php');
 
+use App\Util\PrototypeException;
+
+require_once('../util/PrototypeException.php');
+
 
 /**
  * Trait DbConnectTrait
@@ -16,6 +20,7 @@ trait DbConnectTrait
     /**
      * DBの接続情報を取得する関数
      * @return PDO $db DB接続情報
+     * @throws PrototypeException
      */
     public function dbConnectInfo()
     {
@@ -32,18 +37,15 @@ trait DbConnectTrait
         }
         catch (PDOException $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
     }
 }

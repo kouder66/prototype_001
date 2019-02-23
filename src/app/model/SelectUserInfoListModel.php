@@ -13,10 +13,12 @@ use App\Entity\UserInfoEntity;
 use PDOException;
 use TypeError;
 use Exception;
+use App\Util\PrototypeException;
 
 require_once('../interface/SelectUserInfoListInterface.php');
 require_once('../util/DbConnectTrait.php');
 require_once('../entity/UserInfoEntity.php');
+require_once('../util/PrototypeException.php');
 
 
 /**
@@ -30,6 +32,7 @@ class SelectUserInfoListModel implements SelectUserInfoListInterface
     /**
      * ユーザ情報一覧を取得する関数
      * @return mixed $user_info_list ユーザ情報一覧
+     * @throws PrototypeException
      */
     public function selectUserInfoList()
     {
@@ -77,18 +80,15 @@ class SelectUserInfoListModel implements SelectUserInfoListInterface
         }
         catch (PDOException $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $user_info_list;
