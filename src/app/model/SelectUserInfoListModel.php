@@ -41,7 +41,7 @@ class SelectUserInfoListModel implements SelectUserInfoListInterface
         {
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-            $sql = 'SELECT * FROM user_info ORDER BY regist_date DESC';
+            $sql = 'SELECT * FROM user_info ORDER BY update_date DESC';
 
             $stmt = $db->prepare($sql);
             $stmt->execute();

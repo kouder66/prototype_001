@@ -10,11 +10,11 @@
         <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/userInfoList.css">
-        <script src="../js/jquery-3.3.1.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/bootstrap-datepicker.js"></script>
-        <script src="../js/bootstrap-datepicker.ja.min.js"></script>
-        <script src="../js/userInfoList.js"></script>
+        <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="../js/bootstrap-datepicker.ja.min.js"></script>
+        <script type="text/javascript" src="../js/userInfoList.js"></script>
     </head>
     <body>
         <div id="header">
@@ -86,7 +86,7 @@
                     </form>
                 </div>
             </div>
-            <div>
+            <div id="user_info_list">
                 <?php if(isset($_SESSION['result_search_message'])): ?>
                     <div class="no_search_result_area">
                         <p class="no_search_result"><?php echo $_SESSION['result_search_message'] ?></p>

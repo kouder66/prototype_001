@@ -13,12 +13,11 @@
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/createUserInfo.css">
-        <script src="../js/jquery-3.3.1.min.js"></script>
-        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
         <div>
-            <!-- ヘッダー読み込み -->
             <?php require_once('headerView.php'); ?>
         </div>
         <div id="create_userInfo">

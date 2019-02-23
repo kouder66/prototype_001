@@ -8,6 +8,7 @@
 #search_user_info {
     background-color: #e6e6e6;
     border-radius: 10px 10px 10px 10px;
+    z-index: 99;
 }
 
 /******************************

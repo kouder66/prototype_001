@@ -83,7 +83,8 @@ trait SearchCheckTrait
         // fromが入力されて、toが未入力の場合、エラー扱いにする
         // toもfromも両方入力されている場合、toとfromをチェックする
         if ((!is_null($SearchDateEntity->getRegistDateTo()))
-            && is_null($SearchDateEntity->getRegistDateFrom())) {
+            && is_null($SearchDateEntity->getRegistDateFrom()))
+        {
             // 日付のフォーマット変換
             $date_to = date('Y-m-d', strtotime($SearchDateEntity->getRegistDateTo()));
 
@@ -91,6 +92,12 @@ trait SearchCheckTrait
             if (!(preg_match('/^([1-9][0-9]{3})\-(0[1-9]{1}|1[0-2]{1})\-(0[1-9]{1}|[1-2]{1}[0-9]{1}|3[0-1]{1})$/', $date_to)))
             {
                 $_SESSION['check_error_message6'] = SEARCH_ERROR_MESSAGE1;
+                $check_count++;
+            }
+            // 未来日チェック
+            if ($date_to < date("Y/m/d"))
+            {
+                $_SESSION['check_error_message7'] = SEARCH_ERROR_MESSAGE2;
                 $check_count++;
             }
         }
@@ -119,7 +126,7 @@ trait SearchCheckTrait
                     $check_count++;
                 }
                 // 未来日チェック
-                if ($value > date("Y/m/d"))
+                if ($value < date("Y/m/d"))
                 {
                     $_SESSION['check_error_message7'] = SEARCH_ERROR_MESSAGE2;
                     $check_count++;
