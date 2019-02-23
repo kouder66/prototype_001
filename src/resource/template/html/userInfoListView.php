@@ -1,11 +1,11 @@
 <?php require_once('../../../app/entity/UserInfoEntity.php'); ?>
-<?php if(!isset($_SESSION)){ session_start(); } ?>
+<?php if (!isset($_SESSION)){ session_start(); } ?>
 
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>ユーザ一覧</title>
+        <title>ユーザ情報一覧</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
         <link rel="stylesheet" href="../css/reset.css">
@@ -22,14 +22,14 @@
             <?php require_once('headerView.php'); ?>
         </div>
         <div class="container-fluid user_info_list_area">
-            <h4>ユーザ一覧</h4>
+            <h4>ユーザ情報一覧</h4>
             <!-- 検索フォーム -->
             <div id="search_user_info">
                 <div class="accordion_title">
                     <h4>検索</h4>
                 </div>
                 <div class="accordion_contents">
-                    <form action="#" method="POST">
+                    <form action="../../../app/controller/SearchUserInfoController.php" method="POST">
                         <div class="search_form search_user_id_form">
                             <p class="search_user_id">
                                 <input type="text" class="form-control search_input" name="user_id" placeholder="ユーザID" maxlength="8" />
@@ -87,9 +87,9 @@
                 </div>
             </div>
             <div>
-                <?php if(isset($_SESSION['result_message'])): ?>
+                <?php if(isset($_SESSION['result_search_message'])): ?>
                     <div class="no_search_result_area">
-                        <p class="no_search_result"><?php echo $_SESSION['result_message'] ?></p>
+                        <p class="no_search_result"><?php echo $_SESSION['result_search_message'] ?></p>
                     </div>
                 <?php elseif(isset($_SESSION['user_info_list'])):?>
                     <!-- ユーザ情報一覧 -->
@@ -115,14 +115,14 @@
                                     <td data-label="ユーザ更新日"><?php echo $value->getUpdateDate(); ?></td>
                                     <td>
                                         <form action="../../../app/controller/UpdateUserInfoController.php?id=<?php echo $value->getId(); ?>" method="GET">
-                                            <input type="hidden" name="id" value=<?php echo $value->getId(); ?> />
+                                            <input type="hidden" name="id" value=<?php echo $value->getId(); ?> >
                                             <input type="submit" class="btn btn-primary sp_button" name="update" value="編集" />
                                         </form>
                                     </td>
                                     <td>
                                         <form action="../../../app/controller/DeleteUserInfoController.php?id=<?php echo $value->getId(); ?>" method="GET">
-                                            <input type="hidden" name="id" value=<?php echo $value->getId(); ?> />
-                                            <input type="submit" class="btn btn-primary sp_button" name="deleate" value="削除" />
+                                            <input type="hidden" name="id" value=<?php echo $value->getId(); ?>>
+                                            <input type="submit" class="btn btn-primary sp_button" name="delete" value="削除" />
                                         </form>
                                     </td>
                                 </tr>
@@ -135,14 +135,13 @@
     </body>
 </html>
 
-<?php unset($_SESSION["check_error_message1"]); ?>
-<?php unset($_SESSION["check_error_message2"]); ?>
-<?php unset($_SESSION["check_error_message3"]); ?>
-<?php unset($_SESSION["check_error_message4"]); ?>
-<?php unset($_SESSION["check_error_message5"]); ?>
-<?php unset($_SESSION["check_error_message6"]); ?>
-<?php unset($_SESSION["check_error_message7"]); ?>
-<?php unset($_SESSION["check_error_message8"]); ?>
-<?php unset($_SESSION["check_error_message9"]); ?>
-<?php unset($_SESSION["result_message"]); ?>
-
+<?php unset($_SESSION['check_error_message1']); ?>
+<?php unset($_SESSION['check_error_message2']); ?>
+<?php unset($_SESSION['check_error_message3']); ?>
+<?php unset($_SESSION['check_error_message4']); ?>
+<?php unset($_SESSION['check_error_message5']); ?>
+<?php unset($_SESSION['check_error_message6']); ?>
+<?php unset($_SESSION['check_error_message7']); ?>
+<?php unset($_SESSION['check_error_message8']); ?>
+<?php unset($_SESSION['check_error_message9']); ?>
+<?php unset($_SESSION['result_message']); ?>

@@ -16,18 +16,6 @@ require_once('../model/LoginModel.php');
 require_once('../config/MessageConfig.php');
 
 
-/** セッションが存在してない場合、セッションスタート */
-if (!isset($_SESSION))
-{
-    session_start();
-}
-
-/** エラーメッセージ関連のセッションの初期化 */
-unset($_SESSION['check_error_message1']);
-unset($_SESSION['check_error_message2']);
-unset($_SESSION['check_error_message11']);
-unset($_SESSION['check_error_message12']);
-
 /**
  * Class LoginService
  * @package App\Service
@@ -60,12 +48,24 @@ class LoginService
     {
         $result_login = false;
 
+        // セッションスタート
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
+
+        // エラーメッセージ関連のセッションの初期化
+        unset($_SESSION['check_error_message1']);
+        unset($_SESSION['check_error_message2']);
+        unset($_SESSION['check_error_message11']);
+        unset($_SESSION['check_error_message12']);
+
         // entityに各値を格納する
         $UserInfoEntity = new UserInfoEntity();
         $UserInfoEntity->setUserId($this->user_id);
         $UserInfoEntity->setPassword($this->password);
 
-        // バリデーション結果がfalseの場合、ログイン認証結果はfalseを返す
+        // validation
         if (!$this->InputCheck('login', $UserInfoEntity))
         {
             return $result_login;
@@ -74,9 +74,9 @@ class LoginService
         // パスワードhash化
         $UserInfoEntity->setPassword(hash('sha256', $UserInfoEntity->getPassword()));
 
+        // ユーザID存在チェック
         $LoginModel = new LoginModel($UserInfoEntity->getUserId(), $UserInfoEntity->getPassword());
 
-        // ユーザID存在チェック
         if ($LoginModel->selectUserId() !== 1)
         {
             // エラーメッセージを設定
@@ -85,12 +85,12 @@ class LoginService
             return $result_login;
         }
 
-        // ユーザ情報取得
+        // ログイン認証
         $user_info = $LoginModel->selectUserInfo();
 
         if ($user_info)
         {
-            // idをセッションに設定
+            // セッションに登録
             $_SESSION['id'] = $user_info['id'];
             // ユーザ名を設定
             $_SESSION['user_name'] = $user_info['first_name'].$user_info['last_name'];

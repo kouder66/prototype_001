@@ -11,8 +11,15 @@
  */
 interface LoginInterface
 {
-    /** ユーザIDの件数取得する関数 */
-    public function selectUserId();
-    /** ログイン情報を取得する関数 */
+    /**
+     * ユーザIDの件数取得する関数
+     * @return int
+     */
+    public function selectUserId(): int;
+
+    /**
+     * ログイン情報を取得する関数
+     * @return mixed
+     */
     public function selectUserInfo();
 }

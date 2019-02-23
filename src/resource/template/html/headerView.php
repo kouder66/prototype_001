@@ -1,3 +1,5 @@
+<?php if (!isset($_SESSION)) { session_start(); } ?>
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-success">
         <a class="navbar-brand text-light" href="../../../app/controller/SelectUserInfoListController.php">PHPCRUDプロトタイプ</a>
@@ -14,8 +16,8 @@
                 </li>
             </ul>
             <div class="navbar-nav">
-                <?php if(isset($_SESSION["user_name"])): ?>
-                    <a class="nav-link text-light mr-sm-2" href="../../../app/controller/UpdateUserInfoController.php?id=<?php echo $_SESSION['id'] ?>"><?php echo "ようこそ！！ ".$_SESSION["user_name"]."！！" ?></a>
+                <?php if(isset($_SESSION['id'])): ?>
+                    <a class="nav-link text-light mr-sm-2" href="../../../app/controller/UpdateUserInfoController.php?id=<?php echo $_SESSION['id'] ?>"><?php echo "ようこそ！！ ".$_SESSION["user_name"]."様！！" ?></a>
                 <?php endif; ?>
             </div>
         </div>

@@ -12,6 +12,7 @@ use App\Service\SelectUserInfoListService;
 require_once('../service/SelectUserInfoListService.php');
 require_once('../config/PathConfig.php');
 
+
 /** コントローラ呼び出し */
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {

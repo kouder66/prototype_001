@@ -1,5 +1,5 @@
 <?php require_once('../../../app/entity/userInfoEntity.php'); ?>
-<?php session_start(); ?>
+<?php if (!isset($_SESSION)) { session_start(); } ?>
 
 <!DOCTYPE html>
 <html lang="ja">

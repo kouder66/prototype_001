@@ -44,6 +44,12 @@ class DeleteUserInfoService
     {
         $result_delete_user_info = false;
 
+        // セッションスタート
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
+
         // id&ユーザIDチェック
         if (!(isset($this->id) || isset($this->user_id)))
         {
@@ -58,7 +64,8 @@ class DeleteUserInfoService
             // セッションに登録
             $_SESSION['title'] = TITLE3;
             $_SESSION['completion_message'] = COMPLETION_MESSAGE3;
-            $_SESSION['completion_id'] = $this->user_id;
+            $_SESSION['completion_id'] = $this->id;
+            $_SESSION['completion_user_id'] = $this->user_id;
 
             $result_delete_user_info = true;
         }

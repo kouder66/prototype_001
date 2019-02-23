@@ -17,15 +17,13 @@ require_once('../config/MessageConfig.php');
 trait InputCheckTrait
 {
     /**
-     * 入力項目のバリデーションを行う関数
-     *
+     * 登録入力項目のバリデーションを行う関数
      * @param string $validation_mode バリエーション対象
      * @param  UserInfoEntity $UserInfoEntity ユーザ情報のエンティティ
      * @return bool $result_validation バリデーション判定結果
      */
     public function InputCheck(string $validation_mode, UserInfoEntity $UserInfoEntity): bool
     {
-        // バリデーション判定結果
         $result_validation = false;
         // チェックカウント
         $check_count = 0;
@@ -157,7 +155,7 @@ trait InputCheckTrait
         }
 
         // チェックカウントが0ではない場合、何かしらのバリエーションで引っかかっている為、falseを返す
-        if ($check_count === 0)
+        if (!$check_count)
         {
             $result_validation = true;
         }

@@ -12,8 +12,6 @@ use App\Service\CreateUserInfoService;
 require_once('../config/PathConfig.php');
 require_once('../service/CreateUserInfoService.php');
 
-/** エンティティのセッション削除 */
-unset($_SESSION['user_info_entity']);
 
 /** コントローラ呼び出し */
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
@@ -37,6 +35,15 @@ class CreateUserInfoController
      */
     public static function transitionCreateUserInfo(): void
     {
+        // セッションスタート
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
+
+        // エンティティのセッション削除
+        unset($_SESSION['user_info_entity']);
+
         // ユーザ登録画面へ遷移
         header('Location: '.BASE_VIEW_PATH.'createUserInfoView.php');
         exit();

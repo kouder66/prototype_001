@@ -44,6 +44,18 @@ define('LOGIN_ERROR_MESSAGE1', 'ユーザIDが存在していません。');
 // パスワード一致チェックエラーメッセージ
 define('LOGIN_ERROR_MESSAGE2', 'パスワードが間違っています。');
 
+// 日付型チェックエラーメッセージ
+define('SEARCH_ERROR_MESSAGE1', '登録日を正しい形式で入力してください。');
+// 日付未来日チェックエラーメッセージ
+define('SEARCH_ERROR_MESSAGE2', '登録日が未来日となっています。');
+// 日付比較チェックエラーメッセージ
+define('SEARCH_ERROR_MESSAGE3', '登録日を正しい期間で入力してください。');
+// 日付検索期間チェックエラーメッセージ
+define('SEARCH_ERROR_MESSAGE4', '検索期間は90日までとなっています。');
+
+// 検索結果0件メッセージ
+define('RESULT_SEARCH_MESSAGE', '検索結果は0件です。条件を変えて検索してください。');
+
 // 登録完了メッセージ
 define('COMPLETION_MESSAGE1', 'ユーザ登録完了しました。');
 // 削除完了メッセージ

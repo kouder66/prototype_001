@@ -11,6 +11,9 @@
  */
 interface SelectUserInfoListInterface
 {
-    /** ユーザ情報一覧を取得する関数 */
+    /**
+     * ユーザ情報一覧を取得する関数
+     * @return mixed
+     */
     public function selectUserInfoList();
 }

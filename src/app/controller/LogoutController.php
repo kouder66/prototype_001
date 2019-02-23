@@ -7,21 +7,16 @@
  */
 namespace App\Controller;
 
+use App\Service\LogoutService;
+
 require_once('../config/PathConfig.php');
+require_once('../service/LogoutService.php');
 
-
-/** セッション開始 */
-session_start();
-/** セッション変数を全て削除 */
-$_SESSION = array();
-/** セッションの登録データを削除 */
-session_destroy();
 
 /** コントローラ呼び出し */
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    $LogoutController = new LogoutController();
-    $LogoutController->executeLogout();
+    LogoutController::executeLogout();
 }
 
 /**
@@ -34,8 +29,11 @@ class LogoutController
      * ログインアウトを実行する関数
      * @return void
      */
-    public function executeLogout(): void
+    public static function executeLogout(): void
     {
+        // セッション削除
+        LogoutService::destroySession();
+
         // トップ画面へ遷移
         header('Location: '.BASE_VIEW_PATH.'index.php');
         exit();

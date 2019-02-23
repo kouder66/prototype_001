@@ -18,7 +18,6 @@ require_once('../config/PathConfig.php');
 /** コントローラ呼び出し */
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    var_dump($_GET['id']);
     DeleteUserInfoController::transitionDeleteUserInfo($_GET['id']);
 }
 else
@@ -60,12 +59,10 @@ class DeleteUserInfoController
     public static function executeDeleteUserInfo(string $id, $user_id): void
     {
         $DeleteUserInfoService = new DeleteUserInfoService($id, $user_id);
+        $DeleteUserInfoService->checkDeleteUserInfo();
 
-        if ($DeleteUserInfoService->checkDeleteUserInfo())
-        {
-            // 登録完了画面を表示
-            header('Location: '.BASE_VIEW_PATH.'completionView.php');
-            exit();
-        }
+        // 登録完了画面を表示
+        header('Location: '.BASE_VIEW_PATH.'completionView.php');
+        exit();
     }
 }

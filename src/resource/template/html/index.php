@@ -1,7 +1,7 @@
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if (!isset($_SESSION)) { session_start(); } ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0">
         <title>ログイン</title>
@@ -54,7 +54,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="login_form buttun form-group">
+                <div class="login_form form-group">
                     <input type="submit" class="btn btn-primary form-control" value="ログイン" />
                 </div>
             </form>

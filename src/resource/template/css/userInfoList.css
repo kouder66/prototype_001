@@ -201,10 +201,10 @@
      ******************************/
     #search_user_info {
         width: 45%;
-        height: 50%;
+        height: 55%;
         margin: 1.5% 28% 3% 28%;
-        padding-top: 3px;
-        padding-bottom: 3px;
+        padding-top: 10px;
+        padding-bottom: 5px;
     }
 
     /******************************

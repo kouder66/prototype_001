@@ -1,8 +1,8 @@
 <?php require_once('../../../app/entity/UserInfoEntity.php'); ?>
-<?php session_start(); ?>
+<?php if (!isset($_SESSION)) { session_start(); } ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0">
         <title>ユーザ情報削除</title>

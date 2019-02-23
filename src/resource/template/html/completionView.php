@@ -1,7 +1,8 @@
+<?php require_once('../../../app/config/MessageConfig.php'); ?>
 <?php session_start(); ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta http-equiv="content-type" charset="utf-8">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -12,8 +13,9 @@
         <title>完了画面</title>
     </head>
     <body>
-        <!-- ヘッダー読み込み -->
-        <?php require_once('headerView.php'); ?>
+        <?php if(!($_SESSION['title'] === TITLE3 && $_SESSION['id'] === $_SESSION['completion_id'])): ?>
+            <?php require_once('headerView.php'); ?>
+        <?php endif; ?>
         <div id="completion_userInfo">
             <div class="title">
                 <h4><?php echo $_SESSION['title'] ?>完了</h4>
@@ -23,10 +25,14 @@
             </div>
             <div class="completion_form">
                 <label class="completion_title">ユーザID : </label>
-                <p class="completion_value"><?php echo $_SESSION['completion_id'] ?></p>
+                <p class="completion_value"><?php echo $_SESSION['completion_user_id'] ?></p>
             </div>
             <div class="text-center button_area">
-                <a href="../../../app/controller/SelectUserInfoListController.php" class="btn btn-primary">戻る</a>
+                <?php if($_SESSION['title'] === TITLE3 && $_SESSION['id'] === $_SESSION['completion_id']): ?>
+                    <a href="../../../app/controller/LogoutController.php" class="btn btn-primary">ログアウト</a>
+                <?php else: ?>
+                    <a href="../../../app/controller/SelectUserInfoListController.php" class="btn btn-primary">ユーザ情報一覧戻る</a>
+                <?php endif; ?>
             </div>
         </div>
     </body>

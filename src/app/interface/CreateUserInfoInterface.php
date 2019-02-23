@@ -11,6 +11,9 @@
  */
 interface CreateUserInfoInterface
 {
-    /** ユーザ情報を登録する関数 */
-    public function insertUserInfo();
+    /**
+     * ユーザ情報を登録する関数
+     * @return bool
+     */
+    public function insertUserInfo(): bool ;
 }

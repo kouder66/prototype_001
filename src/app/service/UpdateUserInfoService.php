@@ -17,29 +17,6 @@ require_once('../entity/UserInfoEntity.php');
 require_once('../config/MessageConfig.php');
 
 
-/** session start */
-if(!isset($_SESSION))
-{
-    session_start();
-}
-
-/** エラーメッセージ関連のセッション削除 */
-unset($_SESSION['check_error_message1']);
-unset($_SESSION['check_error_message2']);
-unset($_SESSION['check_error_message3']);
-unset($_SESSION['check_error_message4']);
-unset($_SESSION['check_error_message5']);
-unset($_SESSION['check_error_message6']);
-unset($_SESSION['check_error_message7']);
-unset($_SESSION['check_error_message8']);
-unset($_SESSION['check_error_message9']);
-unset($_SESSION['check_error_message10']);
-unset($_SESSION['check_error_message11']);
-unset($_SESSION['check_error_message12']);
-unset($_SESSION['check_error_message13']);
-unset($_SESSION['check_error_message14']);
-unset($_SESSION['check_error_message15']);
-
 /**
  * Class UpdateUserInfoService
  * @package App\Service
@@ -70,6 +47,18 @@ class UpdateUserInfoService
     {
         $result_user_info = false;
 
+        // セッションスタート
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
+
+        // idチェック
+        if (!isset($id))
+        {
+            return $result_user_info;
+        }
+
         $UpdateUserInfoModel = new UpdateUserInfoModel();
         $UserInfoEntity = $UpdateUserInfoModel->selectUserInfoById($id);
 
@@ -89,6 +78,29 @@ class UpdateUserInfoService
     public function checkUpdateUserInfo(): bool
     {
         $result_update_user_info = false;
+
+        // セッションスタート
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
+
+        // エラーメッセージ関連のセッション削除
+        unset($_SESSION['check_error_message1']);
+        unset($_SESSION['check_error_message2']);
+        unset($_SESSION['check_error_message3']);
+        unset($_SESSION['check_error_message4']);
+        unset($_SESSION['check_error_message5']);
+        unset($_SESSION['check_error_message6']);
+        unset($_SESSION['check_error_message7']);
+        unset($_SESSION['check_error_message8']);
+        unset($_SESSION['check_error_message9']);
+        unset($_SESSION['check_error_message10']);
+        unset($_SESSION['check_error_message11']);
+        unset($_SESSION['check_error_message12']);
+        unset($_SESSION['check_error_message13']);
+        unset($_SESSION['check_error_message14']);
+        unset($_SESSION['check_error_message15']);
 
         // idチェック
         if (!isset($this->input_user_info['id']))
@@ -130,10 +142,11 @@ class UpdateUserInfoService
             // セッションに登録
             $_SESSION['title'] = TITLE2;
             $_SESSION['completion_message'] = COMPLETION_MESSAGE2;
-            $_SESSION['completion_id'] = $UserInfoEntity->getUserId();
+            $_SESSION['completion_id'] = $UserInfoEntity->getId();
+            $_SESSION['completion_user_id'] = $UserInfoEntity->getUserId();
 
             // ログインユーザの場合、セッションを更新する
-            if ($_SESSION['user_name'] === $UserInfoEntity->getFirstName().$UserInfoEntity->getLastName())
+            if ($_SESSION['id'] === $UserInfoEntity->getId())
             {
                 $_SESSION['user_name'] = $UserInfoEntity->getFirstName().$UserInfoEntity->getLastName();
             }

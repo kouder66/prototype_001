@@ -19,29 +19,6 @@ require_once('../config/MessageConfig.php');
 require_once('../model/CreateUserInfoModel.php');
 
 
-/** session start */
-if (!isset($_SESSION))
-{
-    session_start();
-}
-
-/** エラーメッセージ関連のセッション削除 */
-unset($_SESSION['check_error_message1']);
-unset($_SESSION['check_error_message2']);
-unset($_SESSION['check_error_message3']);
-unset($_SESSION['check_error_message4']);
-unset($_SESSION['check_error_message5']);
-unset($_SESSION['check_error_message6']);
-unset($_SESSION['check_error_message7']);
-unset($_SESSION['check_error_message8']);
-unset($_SESSION['check_error_message9']);
-unset($_SESSION['check_error_message10']);
-unset($_SESSION['check_error_message11']);
-unset($_SESSION['check_error_message12']);
-unset($_SESSION['check_error_message13']);
-unset($_SESSION['check_error_message14']);
-unset($_SESSION['check_error_message15']);
-
 /**
  * Class CreateUserInfoService
  * @package App\Service
@@ -70,6 +47,29 @@ class CreateUserInfoService
     public function checkCreatUserInfo(): bool
     {
         $result_create_user_info = false;
+
+        // セッションスタート
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
+
+        // エラーメッセージ関連のセッション削除
+        unset($_SESSION['check_error_message1']);
+        unset($_SESSION['check_error_message2']);
+        unset($_SESSION['check_error_message3']);
+        unset($_SESSION['check_error_message4']);
+        unset($_SESSION['check_error_message5']);
+        unset($_SESSION['check_error_message6']);
+        unset($_SESSION['check_error_message7']);
+        unset($_SESSION['check_error_message8']);
+        unset($_SESSION['check_error_message9']);
+        unset($_SESSION['check_error_message10']);
+        unset($_SESSION['check_error_message11']);
+        unset($_SESSION['check_error_message12']);
+        unset($_SESSION['check_error_message13']);
+        unset($_SESSION['check_error_message14']);
+        unset($_SESSION['check_error_message15']);
 
         // HTMLエスケープ
         $this->checkXSS($this->input_user_info);
@@ -119,7 +119,8 @@ class CreateUserInfoService
             // セッションに登録
             $_SESSION['title'] = TITLE1;
             $_SESSION['completion_message'] = COMPLETION_MESSAGE1;
-            $_SESSION['completion_id'] = $UserInfoEntity->getUserId();
+            $_SESSION['completion_id'] = $UserInfoEntity->getId();
+            $_SESSION['completion_user_id'] = $UserInfoEntity->getUserId();
 
             $result_create_user_info = true;
         }
