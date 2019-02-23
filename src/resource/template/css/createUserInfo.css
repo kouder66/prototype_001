@@ -1,0 +1,70 @@
+/******************************
+ * 共通 CSS
+ ******************************/
+
+/******************************
+ * ID
+ ******************************/
+#create_userInfo {
+    background-color: #e6e6e6;
+    height: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px 10px 10px 10px;
+    z-index: 99;
+}
+
+/******************************
+ * CLASS
+ ******************************/
+.title {
+    padding: 10px 20px 10px 20px;
+}
+
+.create_form {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.error_message {
+    color: #ff0000;
+}
+
+/******************************
+ * Smart phone
+ ******************************/
+@media screen and (max-width:639px) {
+    /******************************
+     * ID
+     ******************************/
+    #create_userInfo {
+        width: 90%;
+        margin: 7% 5% 7% 5%;
+    }
+}
+
+/******************************
+ * Tablet
+ ******************************/
+@media only screen and (min-width:640px) and (max-width:1023px) {
+    /******************************
+     * ID
+     ******************************/
+    #create_userInfo {
+        width: 80%;
+        margin: 5% 10% 5% 10%;
+    }
+}
+
+/******************************
+ * PC
+ ******************************/
+@media screen and (min-width:1024px) {
+    /******************************
+     * ID
+     ******************************/
+    #create_userInfo {
+        width: 50%;
+        margin: 2% 25% 2% 25%;
+    }
+}

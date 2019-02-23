@@ -1,0 +1,87 @@
+/******************************
+ * 共通 CSS
+ ******************************/
+
+/******************************
+* ID
+******************************/
+#completion_userInfo {
+    background-color: #e6e6e6;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px 10px 10px 10px;
+    z-index: 99;
+}
+
+/******************************
+* CLASS
+******************************/
+.title {
+    padding: 10px 20px 10px 20px;
+}
+
+.completion_message {
+    text-align: center;
+}
+
+.completion_form {
+    border-bottom: solid 2px white;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.completion_form .completion_value {
+    display: inline-block;
+}
+
+.completion_title {
+    display: inline-block;
+}
+
+.button_area {
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+/******************************
+ * Smart phone
+ ******************************/
+@media screen and (max-width:639px) {
+    /******************************
+    * ID
+    ******************************/
+    #completion_userInfo {
+        width: 92%;
+        height: 60%;
+        margin: 5% 4% 5% 4%;
+    }
+}
+
+/******************************
+ * Tablet
+ ******************************/
+@media only screen and (min-width:640px) and (max-width:1023px) {
+    /******************************
+    * ID
+    ******************************/
+    #completion_userInfo {
+        width: 90%;
+        height: 60%;
+        margin: 3% 5% 3% 5%;
+    }
+}
+
+/******************************
+ * PC
+ ******************************/
+@media screen and (min-width:1024px) {
+    /******************************
+    * ID
+    ******************************/
+    #completion_userInfo {
+        width: 48%;
+        height: 50%;
+        margin: 7% 26% 7% 26%;
+    }
+}
