@@ -56,9 +56,9 @@ class DeleteUserInfoService
             return $result_delete_user_info;
         }
 
-        // ユーザ情報削除判定
         $DeleteUserInfoModel = new DeleteUserInfoModel();
 
+        // ユーザ情報削除判定
         if ($DeleteUserInfoModel->deleteUserInfo($this->id))
         {
             // セッションに登録

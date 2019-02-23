@@ -31,6 +31,7 @@ class SelectUserInfoListController
      */
     public static function executeSelectUserInfoList(): void
     {
+        // ユーザ情報一覧取得
         if (SelectUserInfoListService::getUserInfoList())
         {
             // トップ画面へ遷移

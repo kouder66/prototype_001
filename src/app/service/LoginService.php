@@ -74,9 +74,9 @@ class LoginService
         // パスワードhash化
         $UserInfoEntity->setPassword(hash('sha256', $UserInfoEntity->getPassword()));
 
-        // ユーザID存在チェック
         $LoginModel = new LoginModel($UserInfoEntity->getUserId(), $UserInfoEntity->getPassword());
 
+        // ユーザID存在チェック
         if ($LoginModel->selectUserId() !== 1)
         {
             // エラーメッセージを設定

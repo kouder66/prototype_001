@@ -58,9 +58,10 @@ class CreateUserInfoController
     {
         $CreateUserInfoService = new CreateUserInfoService($input_user_info);
 
+        // ユーザ情報登録
         if ($CreateUserInfoService->checkCreatUserInfo())
         {
-            // 登録完了画面を表示
+            // 登録完了画面へ遷移
             header('Location: '.BASE_VIEW_PATH.'completionView.php');
             exit();
         }

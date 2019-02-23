@@ -101,9 +101,9 @@ class CreateUserInfoService
             return $result_create_user_info;
         }
 
-        // ユーザID存在チェック
         $LoginModel = new LoginModel($UserInfoEntity->getUserId(), $UserInfoEntity->getPassword());
 
+        // ユーザID存在チェック
         if ($LoginModel->selectUserId())
         {
             $_SESSION["check_error_message16"] = CHECK_ERROR_MESSAGE16;
@@ -111,9 +111,9 @@ class CreateUserInfoService
             return $result_create_user_info;
         }
 
-        // ユーザ情報登録判定
         $CreateUserInfoModel = new CreateUserInfoModel($UserInfoEntity);
 
+        // ユーザ情報登録判定
         if ($CreateUserInfoModel->insertUserInfo())
         {
             // セッションに登録

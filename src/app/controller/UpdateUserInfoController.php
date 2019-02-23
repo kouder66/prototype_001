@@ -36,6 +36,7 @@ class UpdateUserInfoController
      */
     public static function transitionUpdateUserInfo(string $id): void
     {
+        // ユーザ情報一覧取得
         if (UpdateUserInfoService::getUserInfo($id))
         {
             // ユーザ登録画面へ遷移
@@ -59,9 +60,10 @@ class UpdateUserInfoController
     {
         $UpdateUserInfoService = new UpdateUserInfoService($input_user_info);
 
+        // ユーザ情報更新
         if ($UpdateUserInfoService->checkUpdateUserInfo())
         {
-            // 登録完了画面を表示
+            // 更新完了画面へ遷移
             header('Location: '.BASE_VIEW_PATH.'completionView.php');
             exit();
         }

@@ -38,8 +38,10 @@ class DeleteUserInfoController
      */
     public static function transitionDeleteUserInfo(string $id): void
     {
+        // ユーザ情報取得
         if (UpdateUserInfoService::getUserInfo($id))
         {
+            // ユーザ情報削除画面へ遷移
             header('Location: '.BASE_VIEW_PATH.'deleteUserInfoView.php');
             exit();
         }
@@ -58,10 +60,11 @@ class DeleteUserInfoController
      */
     public static function executeDeleteUserInfo(string $id, $user_id): void
     {
+        // ユーザ情報削除
         $DeleteUserInfoService = new DeleteUserInfoService($id, $user_id);
         $DeleteUserInfoService->checkDeleteUserInfo();
 
-        // 登録完了画面を表示
+        // 削除完了画面へ遷移
         header('Location: '.BASE_VIEW_PATH.'completionView.php');
         exit();
     }

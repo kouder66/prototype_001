@@ -37,10 +37,10 @@ class LoginController
     {
         $LoginService = new LoginService($user_id, $password);
 
-        // ログイン認証結果によって遷移する画面が異なる。
+        // ログイン認証
         if ($LoginService->checkLogin())
         {
-            // ユーザ情報一覧を取得できているか確認
+            // ユーザ情報一覧取得
             if (SelectUserInfoListService::getUserInfoList())
             {
                 // トップ画面へ遷移

@@ -112,7 +112,7 @@ class SearchUserInfoService
         $SearchUserInfoModel = new SearchUserInfoModel($UserInfoEntity, $SearchDateEntity);
         $user_info_list = $SearchUserInfoModel->selectSearchUserInfo();
 
-        // セッション登録
+        // セッションに登録
         if ($user_info_list)
         {
             $_SESSION['user_info_list'] = $user_info_list;

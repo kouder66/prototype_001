@@ -134,9 +134,9 @@ class UpdateUserInfoService
             return $result_update_user_info;
         }
 
-        // ユーザ情報更新判定
         $UpdateUserInfoModel = new UpdateUserInfoModel();
 
+        // ユーザ情報更新判定
         if ($UpdateUserInfoModel->updateUserInfo($UserInfoEntity))
         {
             // セッションに登録
