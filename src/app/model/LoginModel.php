@@ -12,9 +12,11 @@ use PDO;
 use PDOException;
 use TypeError;
 use Exception;
+use App\Util\PrototypeException;
 
 require_once('../interface/LoginInterface.php');
 require_once('../util/DbConnectTrait.php');
+require_once('../util/PrototypeException.php');
 
 
 /**
@@ -43,11 +45,10 @@ class LoginModel implements LoginInterface
     /**
      * ユーザIDの件数取得する関数
      * @return int $user_id_count ユーザID件数
+     * @throws PrototypeException
      */
     public function selectUserId(): int
     {
-        $user_id_count = 0;
-
         // DBの接続情報を取得
         $db = $this->dbConnectInfo();
 
@@ -68,18 +69,15 @@ class LoginModel implements LoginInterface
         }
         catch (PDOException $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $user_id_count;
@@ -88,11 +86,10 @@ class LoginModel implements LoginInterface
     /**
      * ログイン情報を取得する関数
      * @return mixed $user_info ユーザ情報
+     * @throws PrototypeException
      */
     public function selectUserInfo()
     {
-        $user_info = array();
-
         $db = $this->dbConnectInfo();
 
         try
@@ -113,18 +110,15 @@ class LoginModel implements LoginInterface
         }
         catch (PDOException $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $user_info;

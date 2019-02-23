@@ -13,10 +13,12 @@ use PDO;
 use PDOException;
 use TypeError;
 use Exception;
+use App\Util\PrototypeException;
 
 require_once('../interface/CreateUserInfoInterface.php');
 require_once('../util/DbConnectTrait.php');
 require_once('../entity/UserInfoEntity.php');
+require_once('../util/PrototypeException.php');
 
 
 /**
@@ -42,11 +44,10 @@ class CreateUserInfoModel implements CreateUserInfoInterface
     /**
      * ユーザ情報を登録する関数
      * @return bool $result_insert_user_info 登録判定結果
+     * @throws PrototypeException
      */
     public function insertUserInfo(): bool
     {
-        $result_insert_user_info = false;
-
         $db = $this->dbConnectInfo();
 
         try {
@@ -117,7 +118,7 @@ class CreateUserInfoModel implements CreateUserInfoInterface
             }
             else
             {
-                throw new Exception();
+                throw new PrototypeException('', 9999);
             }
         }
         catch (PDOException $e)
@@ -125,22 +126,19 @@ class CreateUserInfoModel implements CreateUserInfoInterface
             // ロールバック
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $result_insert_user_info;

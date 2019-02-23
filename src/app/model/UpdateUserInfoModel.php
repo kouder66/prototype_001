@@ -13,10 +13,12 @@ use PDO;
 use PDOException;
 use TypeError;
 use Exception;
+use App\Util\PrototypeException;
 
 require_once('../interface/UpdateUserInfoInterface.php');
 require_once('../util/DbConnectTrait.php');
 require_once('../entity/UserInfoEntity.php');
+require_once('../util/PrototypeException.php');
 
 
 /**
@@ -30,7 +32,8 @@ class UpdateUserInfoModel implements UpdateUserInfoInterface
     /**
      *　選択されたユーザ情報を取得する関数
      * @param string $id id
-     * @return UserInfoEntity ユーザ情報
+     * @return UserInfoEntity $UserInfoEntity ユーザ情報
+     * @throws PrototypeException
      */
     public function selectUserInfoById(string $id): UserInfoEntity
     {
@@ -60,18 +63,15 @@ class UpdateUserInfoModel implements UpdateUserInfoInterface
         }
         catch (PDOException $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $UserInfoEntity;
@@ -81,11 +81,10 @@ class UpdateUserInfoModel implements UpdateUserInfoInterface
      * ユーザ情報を更新する関数
      * @param UserInfoEntity $UserInfoEntity
      * @return bool $result_update_user_info 更新判定結果
+     * @throws PrototypeException
      */
     public function updateUserInfo(UserInfoEntity $UserInfoEntity): bool
     {
-        $result_update_user_info = false;
-
         $db = $this->dbConnectInfo();
 
         try
@@ -145,29 +144,26 @@ class UpdateUserInfoModel implements UpdateUserInfoInterface
             }
             else
             {
-                throw new Exception();
+                throw new PrototypeException('', 9999);
             }
         }
         catch (PDOException $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $result_update_user_info;

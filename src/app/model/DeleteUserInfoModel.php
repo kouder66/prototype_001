@@ -12,9 +12,11 @@ use PDO;
 use PDOException;
 use TypeError;
 use Exception;
+use App\Util\PrototypeException;
 
 require_once('../interface/DeleteUserInfoInterface.php');
 require_once('../util/DbConnectTrait.php');
+require_once('../util/PrototypeException.php');
 
 
 /**
@@ -29,11 +31,10 @@ class DeleteUserInfoModel implements DeleteUserInfoInterface
      * ユーザ情報を削除する関数
      * @param string $id id
      * @return bool $result_delete_user_info 削除判定結果
+     * @throws PrototypeException
      */
     public function deleteUserInfo(string $id): bool
     {
-        $result_delete_user_info = false;
-
         $db = $this->dbConnectInfo();
 
         try
@@ -62,29 +63,26 @@ class DeleteUserInfoModel implements DeleteUserInfoInterface
             }
             else
             {
-                throw new Exception();
+                throw new PrototypeException('', 9999);
             }
         }
         catch (PDOException $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (TypeError $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
         catch (Exception $e)
         {
             $db->rollback();
 
-            echo $e->getCode().PHP_EOL;
-            echo $e->getMessage().PHP_EOL;
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
         return $result_delete_user_info;
