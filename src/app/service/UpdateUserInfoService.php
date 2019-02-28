@@ -44,13 +44,13 @@ class UpdateUserInfoService
     /**
      *　ユーザ情報取得を判定する関数
      * @param string $id id
-     * @return bool $result_user_info 更新するユーザ情報取得結果
+     * @return void
+     * @throws PrototypeException
      */
-    public static function getUserInfo(string $id): bool
+    public static function getUserInfo(string $id): void
     {
-        $result_user_info = false;
-
-        try {
+        try
+        {
             // セッションスタート
             if (!isset($_SESSION))
             {
@@ -60,7 +60,7 @@ class UpdateUserInfoService
             // idチェック
             if (!isset($id))
             {
-                return $result_user_info;
+                throw new PrototypeException('', 9999999);
             }
 
             $UpdateUserInfoModel = new UpdateUserInfoModel();
@@ -69,14 +69,14 @@ class UpdateUserInfoService
             if ($UserInfoEntity)
             {
                 $_SESSION['user_info_entity'] = $UserInfoEntity;
-                $result_user_info = true;
             }
         }
         catch (Exception $e)
         {
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
-        return $result_user_info;
+        return;
     }
 
     /**

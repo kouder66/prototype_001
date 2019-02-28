@@ -8,9 +8,12 @@
 namespace App\Controller;
 
 use App\Service\CreateUserInfoService;
+use App\Util\PrototypeException;
+use Exception;
 
 require_once('../config/PathConfig.php');
 require_once('../service/CreateUserInfoService.php');
+require_once('../util/PrototypeException.php');
 
 
 /** コントローラ呼び出し */
@@ -53,23 +56,31 @@ class CreateUserInfoController
      * ユーザ情報登録を実行する関数
      * @param array $input_user_info 入力されたユーザ情報
      * @return void
+     * @throws PrototypeException
      */
     public static function executeCreateUserInfo(array $input_user_info): void
     {
-        $CreateUserInfoService = new CreateUserInfoService($input_user_info);
+        try
+        {
+            $CreateUserInfoService = new CreateUserInfoService($input_user_info);
 
-        // ユーザ情報登録
-        if ($CreateUserInfoService->checkCreatUserInfo())
-        {
-            // 登録完了画面へ遷移
-            header('Location: '.BASE_VIEW_PATH.'completionView.php');
-            exit();
+            // ユーザ情報登録
+            if ($CreateUserInfoService->checkCreatUserInfo())
+            {
+                // 登録完了画面へ遷移
+                header('Location: '.BASE_VIEW_PATH.'completionView.php');
+                exit();
+            }
+            else
+            {
+                // エラーメッセージを表示
+                header('Location: '.BASE_VIEW_PATH.'createUserInfoView.php');
+                exit();
+            }
         }
-        else
+        catch (Exception $e)
         {
-            // エラーメッセージを表示
-            header('Location: '.BASE_VIEW_PATH.'createUserInfoView.php');
-            exit();
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
     }
 }

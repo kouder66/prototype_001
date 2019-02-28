@@ -23,13 +23,11 @@ class SelectUserInfoListService
 {
     /**
      * ユーザ情報一覧取得を判定する関数
-     * @return bool $result_user_info_list ユーザ情報一覧取得結果
+     * @return void
      * @throws PrototypeException
      */
-    public static function getUserInfoList(): bool
+    public static function getUserInfoList(): void
     {
-        $result_user_info_list = false;
-
         try
         {
             // セッションスタート
@@ -50,8 +48,6 @@ class SelectUserInfoListService
             {
                 // セッションに登録
                 $_SESSION['user_info_list'] = $user_info_list;
-
-                $result_user_info_list = true;
             }
         }
         catch (Exception $e)
@@ -59,6 +55,6 @@ class SelectUserInfoListService
             throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
-        return $result_user_info_list;
+        return;
     }
 }

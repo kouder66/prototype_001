@@ -42,13 +42,11 @@ class DeleteUserInfoService
 
     /**
      * ユーザ情報削除を判定する関数
-     * @return bool $result_delete_user_info ユーザ情報削除結果
+     * @return void
      * @throws PrototypeException
      */
-    public function checkDeleteUserInfo(): bool
+    public function checkDeleteUserInfo(): void
     {
-        $result_delete_user_info = false;
-
         try
         {
             // セッションスタート
@@ -73,8 +71,6 @@ class DeleteUserInfoService
                 $_SESSION['completion_message'] = COMPLETION_MESSAGE3;
                 $_SESSION['completion_id'] = $this->id;
                 $_SESSION['completion_user_id'] = $this->user_id;
-
-                $result_delete_user_info = true;
             }
         }
         catch (Exception $e)
@@ -82,6 +78,6 @@ class DeleteUserInfoService
             throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
-        return $result_delete_user_info;
+        return;
     }
 }
