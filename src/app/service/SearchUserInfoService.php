@@ -43,13 +43,11 @@ class SearchUserInfoService
 
     /**
      * ユーザ情報検索を判定する関数
-     * @return bool $search_result 検索判定結果
+     * @return void
      * @throws PrototypeException
      */
-    public function checkSearchWold(): bool
+    public function checkSearchWold(): void
     {
-        $search_result = false;
-
         try
         {
             // セッションスタート
@@ -111,7 +109,7 @@ class SearchUserInfoService
             // validation
             if (!$this->searchCheck($UserInfoEntity, $SearchDateEntity))
             {
-                return $search_result;
+                return;
             }
 
             // ユーザ情報を検索
@@ -123,7 +121,6 @@ class SearchUserInfoService
             if ($user_info_list)
             {
                 $_SESSION['user_info_list'] = $user_info_list;
-                $search_result = true;
             }
             else
             {
@@ -135,6 +132,6 @@ class SearchUserInfoService
             throw new PrototypeException($e->getMessage(), $e->getCode());
         }
 
-        return $search_result;
+        return;
     }
 }

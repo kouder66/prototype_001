@@ -8,9 +8,12 @@
 namespace App\Controller;
 
 use App\Service\SelectUserInfoListService;
+use App\Util\PrototypeException;
+use Exception;
 
 require_once('../service/SelectUserInfoListService.php');
 require_once('../config/PathConfig.php');
+require_once('../util/PrototypeException.php');
 
 
 /** コントローラ呼び出し */
@@ -28,21 +31,22 @@ class SelectUserInfoListController
     /**
      * ユーザ一覧取得を実行する関数
      * @return void
+     * @throws PrototypeException
      */
     public static function executeSelectUserInfoList(): void
     {
-        // ユーザ情報一覧取得
-        if (SelectUserInfoListService::getUserInfoList())
+        try
         {
+            // ユーザ情報一覧取得
+            SelectUserInfoListService::getUserInfoList();
+
             // トップ画面へ遷移
             header('Location: '.BASE_VIEW_PATH.'userInfoListView.php');
             exit();
         }
-        else
+        catch (Exception $e)
         {
-            // エラーメッセージを表示
-            header('Location: '.BASE_VIEW_PATH.'index.php');
-            exit();
+            throw new PrototypeException($e->getMessage(), $e->getCode());
         }
     }
 }
